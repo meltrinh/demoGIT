@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Hind', sans-serif;
+    /*? rem: dựa vào font-size của thẻ html => hỗ trợ cho bảo trì trang web
+    font-size, spacing(padding, margin)
+    1rem = 18px 
+    nếu ko khai báo font-size, mặc định 1rem = 16px*/
+    font-size: 18px;
+}
+
+
+/* HEADER */
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* 
+    + z-index: auto cua the co position tao sau se > tao ra truoc do
+    + z-index co so > z-index: auto
+    + z-index co so lon de len > so nho  */
+    z-index: 10;
+    /* z-index: 9999999; chi dung khi web co cau truc lon, phuc tap */
+    width: 100%;
+}
+
+header .navbar-brand {
+    /* 2rem = 36px */
+    font-size: 2rem;
+
+}
+
+/* 100 + 10 => 110 */
+#portfolioNav .nav-link {
+    font-size: 1rem;
+    padding: 0 0.833rem;
+    /* ! trước hover */
+    color: white;
+
+    transition: .5s;
+}
+
+#portfolioNav .nav-link::after {
+    content: "";
+
+    display: block;
+    /* trước hover */
+    width: 0;
+    height: 5px;
+
+    background-color: #35a22c;
+
+    transition: .5s;
+}
+
+/* ! sau hover */
+#portfolioNav .nav-item:hover .nav-link::after {
+    width: 100%;
+}
+
+#portfolioNav .nav-item:hover .nav-link {
+    color: #35a22c;
+}
+
+/* Thẻ li có class active thì after của nav-link luôn xuất hiện */
+
+#portfolioNav .active .nav-link::after {
+    width: 100%;
+}
+
+#portfolioNav .active .nav-link {
+    color: #35a22c;
+}
+
+/* li.active : định nghĩa selector của 1 thẻ */
+/* #portfolioNav li.active .nav-link::after {
+    width: 100%;
+} */
+
+/*! Nam duoi cung cua vung noi dung chinh 
++ de doc code
++ bi dai code 
+Desktop first: max-width (man hinh lon truoc -> man hinh nho) 
+Mobile first: min-width (man hinh nho truoc -> lon sau) */
+
+@media screen and (max-width:992px) {
+/* kich thuoc toi da vung man hinh (less than) <= 992px 
+1 + 10 + 10 0> 21 */
+    header .navbar .navbar-toggler { 
+    background-color: #35a22c;
+    }
+
+    #portfolioNav {
+    background-color: white;
+    }
+
+    #portfolioNav .nav-link {
+    color:#35a22c;
+    }
+
+    #portfolioNav .nav-item:hover {
+    background-color: #35a22c;
+    }
+
+    #portfolioNav .nav-link::after {
+    /*! opacity: 0; the trong suot nhung van chiemdien tich tren UI 
+    an hoan toan the (ca dien tich the) => khong dung voi hieu ung an hien khong dung duoc voi transition (cannot combine with transition animation etc., because they are not smooth), instead use opacity for the transition */
+    display: none;
+    }
+    
+    #portfolioNav .nav-item:hover .nav-link {
+        color: white;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    header .navbar .navbar-toggler {
+    background-color: hotpink;
+    }
+}
+
+
+/* CAROUSEL */
+/*! Gọi các thẻ img là con trực tiếp (cấp 1) của carousel-item */
+#carouselPortMain .carousel-item>img {
+    /* vh: thường dùng ở Main carousel */
+    height: 100vh;
+    object-fit: cover;
+}
+
+#carouselPortMain .carousel-caption img {
+    /* hình có dạng hình vuông thì chỉ cần xét width */
+    width: 140px;
+    border-radius: 50%;
+}
+
+/* chỉnh đường gach indicators thì chuyển chữ nhật => hình vuông => tròn */
+
+/*! căn giữa với position absolute cho mọi màn hình */
+#carouselPortMain .carousel-caption {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* PROJECTS */
+.projects {
+    padding: 100px 0;
+}
+
+.card-body h5 {
+    font-size: 20px;
+}
+
+/* AWARD */
+/* img: khi can SEO (khoi products)
+background-image: anh trang tri khong can SEO (co the dung img nhung chi nen dung voi anh kich thuoc nho) */
+.awards {
+    padding: 70px 0;
+    background-image: url(../img/memphis_3.png);
+    /* neu nen co size nho hon the cha => tu dong lap lai anh de phu het the cha */
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+}
+
+.awards__left {
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.g);
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    box-shadow: 0 0 30px 0 rgba(0,0,0,.3);
+}
+
+/*! Toan bo code responsive nam duoi cung cua css 
++ tiet kiem code
++ kho doc code*/
